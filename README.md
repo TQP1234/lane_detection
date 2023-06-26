@@ -32,7 +32,7 @@ Using basic trigonometry, we will get the angle of the lines. Set a condition to
 
 https://github.com/TQP1234/lane_detection/blob/fb7c8d33bb284061fff2151c2dce27072f798e06/main.py#L81-L110
 
-### Step 5: Get the optimal line
+### Step 5: Get the best line
 
 Usually, we will get multiple line detection results. But we only need one line. To choose the best line, I have decided to select the median results.
 
