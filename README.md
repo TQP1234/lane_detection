@@ -72,11 +72,9 @@ Table of parameters:
 
 ## Sample Test Video
 
+Video file is too large to upload in the README.md. Full video analysis is in the repository named as <b>lane_detection_analysis.mp4</b>. Snippet below.
 
-
-https://github.com/TQP1234/lane_detection/assets/75831732/340397c1-bfa4-4549-aba6-14f03c958e38
-
-
+<img width="476" alt="lane_detection_screenshot" src="https://github.com/TQP1234/lane_detection/assets/75831732/ccae7433-c140-4aa4-96f3-cae6feb65c68">
 
 ## Conclusion
 
