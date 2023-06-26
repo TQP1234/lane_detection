@@ -52,7 +52,7 @@ https://github.com/TQP1234/lane_detection/blob/8607f089f622fe0c19af736ab2203fb76
 
 ## Usage
 
-Install the dependencies if you have not.
+Install the dependencies.
 
 ``` shell
 pip install -r requirements.txt
