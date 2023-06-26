@@ -74,4 +74,6 @@ Table of parameters:
 
 From the test video, it could be seen that the lane detection accuracy is not the best. There are certain frames that show the lines being off. And this approach only allows for line detection. And if we are on a curved road, it's probably not going to work. For increased accuracy, a more modern approach such as a deep neural network could be used for lane detection.
 
+Additionally, trucks are not being detected very accurately as well. This is to be expected, as the truck class is under-represented. To improve the model accuracy, we could increase the truck class by image augmentation or collecting more data (balancing the classes in the dataset).
+
 For traditional approach, it still can be used in certain cases such as in a fixed location where the environment is non-changing.
