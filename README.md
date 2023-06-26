@@ -50,6 +50,26 @@ First, we will get the reference point of the vehicle (slightly below the center
 
 https://github.com/TQP1234/lane_detection/blob/a0c4ed7d39cd3f772fedbdf3870605cb8b093809/main.py#L40-L86
 
+## Usage
+
+Install the dependencies if you have not.
+
+``` shell
+pip install -r requirements.txt
+```
+
+Use the following command to run the lane detection.
+
+``` shell
+python main.py --video_path sample_video.mp4
+```
+
+Table of parameters:
+
+| Parameter | Function | Required? | Example input | Default Value |
+| :-- | :-: | :-: | :-: | :-: |
+| video_path | path to the video | No | sample_video.mp4 | sample_video.mp4 |
+
 ## Conclusion
 
 From the test video, it could be seen that the lane detection accuracy is not the best. There are certain frames that show the lines being off. And this approach only allows for line detection. And if we are on a curved road, it's probably not going to work. For increased accuracy, a more modern approach such as a deep neural network could be used for lane detection.
