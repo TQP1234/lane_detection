@@ -68,7 +68,7 @@ Table of parameters:
 
 | Parameter | Function | Required? | Example input | Default Value |
 | :-- | :-: | :-: | :-: | :-: |
-| video_path | path to the video | No | sample_video.mp4 | sample_video.mp4 |
+| video_path | Path to the video | No | sample_video.mp4 | sample_video.mp4 |
 
 ## Conclusion
 
