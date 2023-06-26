@@ -72,9 +72,7 @@ def line_detection(frame):
 
 
 # return the best line (selecting the median results)
-def get_best_line(lines, frame):
-    left_lane = None
-    right_lane = None
+def get_best_line(lines, frame, left_lane, right_lane):
     lines_details_1 = []
     lines_details_2 = []
 
@@ -284,7 +282,9 @@ def main():
 
             # get left and right lane results
             if lines is not None:
-                left_lane, right_lane = get_best_line(lines, frame_copy)
+                left_lane, right_lane = get_best_line(
+                    lines, frame_copy, left_lane, right_lane
+                )
 
             # draw lanes (right)
             if right_lane is not None:
@@ -351,6 +351,7 @@ def main():
                         veh_x = int(xmin + (xmax - xmin) / 2)
                         veh_y = int(ymin + (ymax - ymin) * (3 / 4))
 
+                        # draw vehicle reference point
                         cv2.circle(
                             img=frame_copy,
                             center=(veh_x, veh_y),
