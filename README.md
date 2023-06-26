@@ -12,7 +12,7 @@ For lane detection, traditional computer vision technique (OpenCV library) is us
 
 First, we will perform canny edge detection to get the edges.
 
-https://github.com/TQP1234/lane_detection/blob/4ea9e7d8858555a81c8526402c1e18fcf0a43cb7/main.py#L152-L160
+https://github.com/TQP1234/lane_detection/blob/4ea9e7d8858555a81c8526402c1e18fcf0a43cb7/main.py#L147-L160
 
 ### Step 2: Grab the ROI
 
