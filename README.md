@@ -30,7 +30,7 @@ https://github.com/TQP1234/lane_detection/blob/fb7c8d33bb284061fff2151c2dce27072
 
 Using basic trigonometry, we will get the angle of the lines. Set a condition to only include lines that has an angle between 40-80 degrees OR 100-120 degrees.
 
-https://github.com/TQP1234/lane_detection/blob/fb7c8d33bb284061fff2151c2dce27072f798e06/main.py#L81-L110
+https://github.com/TQP1234/lane_detection/blob/fb7c8d33bb284061fff2151c2dce27072f798e06/main.py#L78-L110
 
 ### Step 5: Get the best line
 
