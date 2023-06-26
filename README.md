@@ -72,7 +72,7 @@ Table of parameters:
 
 ## Sample Test Video
 
-Video file is too large to upload in the README.md. Full video analysis is in the repository named as <b>lane_detection_analysis.mp4</b>.</br>
+Video file is too large to upload in the README.md. Full video analysis can be found in the repository named as <b>lane_detection_analysis.mp4</b>.</br>
 
 Snippet of the video analysis is shown below.
 
