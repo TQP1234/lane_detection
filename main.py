@@ -37,6 +37,143 @@ def region_of_interest(frame):
     return masked_image
 
 
+# canny edge -> grab ROI -> HoughLinesP
+def line_detection(frame):
+    # canny edge parameters
+    ratio = 3
+    kernel_size = 3
+    threshold = 50
+
+    # applying the canny edge filter
+    # resize the frame to decrease resolution
+    # reduce computational cost
+    edge = cv2.Canny(
+        cv2.resize(frame, (320, 320)),
+        threshold,
+        threshold*ratio,
+        kernel_size
+    )
+
+    # grab the region of interest
+    roi = region_of_interest(edge)
+
+    # Apply HoughLinesP method to
+    # to directly obtain line end points
+    lines = cv2.HoughLinesP(
+        roi,
+        rho=1,
+        theta=np.pi/180,
+        threshold=40,
+        minLineLength=3,
+        maxLineGap=10
+    )
+
+    return lines
+
+
+# return the best line (selecting the median results)
+def get_best_line(lines, frame):
+    left_lane = None
+    right_lane = None
+    lines_details_1 = []
+    lines_details_2 = []
+
+    # Iterate over points
+    for points in lines:
+        # extracting points nested in the list
+        x1, y1, x2, y2 = points[0]
+
+        # getting the angle of the line
+        angle = np.arctan2(
+            y2 - y1, x2 - x1) * 180 / np.pi
+
+        # normalizing angle
+        # add 180 if angle is less than 0
+        if angle < 0:
+            angle = angle + 180
+
+        # getting relevant line details
+        # filtering out irrelevant line details such as
+        # horizontal lines and vertical lines
+        # only accepting diagonal lines at a certain angle
+
+        # get lines that are between 40 degrees and 80 degrees
+        if angle >= 40 and angle < 80:
+            lines_details_1.append(
+                (angle, int(x1*2), int(y1*2), int(x2*2), int(y2*2))
+            )
+
+        # get lines that are between 100 degrees and 120 degrees
+        if angle > 100 and angle <= 120:
+            lines_details_2.append(
+                (angle, int(x1*2), int(y1*2), int(x2*2), int(y2*2))
+            )
+
+    # usually, we will get multiple results
+    # we will select the optimal result
+    # by grabbing the median
+    # getting the mean is not ideal as there might be outliers
+    # which will shift the line detection result
+
+    # get the median line details (right)
+    if len(lines_details_1) != 0:
+        # if the length of the list is even,
+        # remove the last element
+        if len(lines_details_1) % 2 == 0:
+            lines_details_1.pop(-1)
+
+        # get the median
+        median_1 = statistics.median(lines_details_1)
+
+        # using basic trigonometry to shift the origin point
+        # to x1, frame_height
+        # finding the x-coordinate (x1) when y = frame_height
+        # tan(theta) = opp / hyp
+        opp = int(frame.shape[0] - median_1[2])
+        x1 = int(median_1[1] + opp / np.tan(
+            median_1[0] * np.pi / 180))
+
+        # finding the x-coordinate (x2)
+        # when y2 = frame_height * 0.5
+        # half the height of the frame
+        # tan(theta) = opp / hyp
+        y2 = int(0.5 * frame.shape[0])
+        x2 = int(x1 - y2 / np.tan(
+            median_1[0] * np.pi / 180))
+
+        right_lane = (x1, frame.shape[0], x2, y2, median_1[0])
+
+    # get the median line details (left)
+    if len(lines_details_2) != 0:
+        # if the length of the list is even,
+        # remove the last element
+        if len(lines_details_2) % 2 == 0:
+            lines_details_2.pop(-1)
+
+        # get the median
+        median_2 = statistics.median(lines_details_2)
+
+        # using basic trigonometry to shift the origin point
+        # to x1, frame_height
+        # finding the x-coordinate (x1) when y = frame_height
+        # tan(theta) = opp / hyp
+        opp = int(frame.shape[0] - median_2[2])
+        x1 = int(median_2[1] + opp / np.tan(
+            median_2[0] * np.pi / 180))
+
+        # finding the x-coordinate (x2)
+        # when y2 = frame_height * 0.5
+        # half the height of the frame
+        # tan(theta) = opp / hyp
+        y2 = int(0.5 * frame.shape[0])
+        x2 = int(x1 - y2 / np.tan(
+            median_2[0] * np.pi / 180))
+
+        left_lane = (x1, frame.shape[0], x2, y2, median_2[0])
+
+    return left_lane, right_lane
+
+
 # finding which lane number the vehicle is in
 def lane_segregation(left_lane, right_lane, veh_x, veh_y):
     left_lane_x = None
@@ -143,133 +280,13 @@ def main():
             frame_copy = cv2.resize(frame.copy(), (640, 640))
 
             # lane detection (using canny edge --> hough line transform)
+            lines = line_detection(frame)
 
-            # canny edge parameters
-            ratio = 3
-            kernel_size = 3
-            threshold = 50
-
-            # applying the canny edge filter
-            # resize the frame to decrease resolution
-            # reduce computational cost
-            edge = cv2.Canny(
-                cv2.resize(frame, (320, 320)),
-                threshold,
-                threshold*ratio,
-                kernel_size
-            )
-
-            # grab the region of interest
-            roi = region_of_interest(edge)
-
-            # Apply HoughLinesP method to
-            # to directly obtain line end points
-            lines = cv2.HoughLinesP(
-                roi,
-                rho=1,
-                theta=np.pi/180,
-                threshold=40,
-                minLineLength=3,
-                maxLineGap=10
-            )
-
-            lines_details_1 = []
-            lines_details_2 = []
-
+            # get left and right lane results
             if lines is not None:
-                # Iterate over points
-                for points in lines:
-                    # extracting points nested in the list
-                    x1, y1, x2, y2 = points[0]
+                left_lane, right_lane = get_best_line(lines, frame_copy)
 
-                    # getting the angle of the line
-                    angle = np.arctan2(
-                        y2 - y1, x2 - x1) * 180 / np.pi
-
-                    # normalizing angle
-                    # add 180 if angle is less than 0
-                    if angle < 0:
-                        angle = angle + 180
-
-                    # getting relevant line details
-                    # filtering out irrelevant line details such as
-                    # horizontal lines and vertical lines
-                    # only accepting diagonal lines at a certain angle
-
-                    # get lines that are between 40 degrees and 80 degrees
-                    if angle >= 40 and angle < 80:
-                        lines_details_1.append(
-                            (angle, int(x1*2), int(y1*2), int(x2*2), int(y2*2))
-                        )
-
-                    # get lines that are between 100 degrees and 120 degrees
-                    if angle > 100 and angle <= 120:
-                        lines_details_2.append(
-                            (angle, int(x1*2), int(y1*2), int(x2*2), int(y2*2))
-                        )
-
-                # usually, we will get multiple results
-                # we will select the optimal result
-                # by grabbing the median
-                # getting the mean is not ideal as there might be outliers
-                # which will shift the line detection result
-
-                # get the median line details (right)
-                if len(lines_details_1) != 0:
-                    # if the length of the list is even,
-                    # remove the last element
-                    if len(lines_details_1) % 2 == 0:
-                        lines_details_1.pop(-1)
-
-                    # get the median
-                    median_1 = statistics.median(lines_details_1)
-
-                    # using basic trigonometry to shift the origin point
-                    # to x1, frame_height
-                    # finding the x-coordinate (x1) when y = frame_height
-                    # tan(theta) = opp / hyp
-                    opp = int(frame_copy.shape[0] - median_1[2])
-                    x1 = int(median_1[1] + opp / np.tan(
-                        median_1[0] * np.pi / 180))
-
-                    # finding the x-coordinate (x2)
-                    # when y2 = frame_height * 0.5
-                    # half the height of the frame
-                    # tan(theta) = opp / hyp
-                    y2 = int(0.5 * frame_copy.shape[0])
-                    x2 = int(x1 - y2 / np.tan(
-                        median_1[0] * np.pi / 180))
-
-                    right_lane = (x1, frame_copy.shape[0], x2, y2, median_1[0])
-
-                # get the median line details (left)
-                if len(lines_details_2) != 0:
-                    # if the length of the list is even,
-                    # remove the last element
-                    if len(lines_details_2) % 2 == 0:
-                        lines_details_2.pop(-1)
-
-                    # get the median
-                    median_2 = statistics.median(lines_details_2)
-
-                    # using basic trigonometry to shift the origin point
-                    # to x1, frame_height
-                    # finding the x-coordinate (x1) when y = frame_height
-                    # tan(theta) = opp / hyp
-                    opp = int(frame_copy.shape[0] - median_2[2])
-                    x1 = int(median_2[1] + opp / np.tan(
-                        median_2[0] * np.pi / 180))
-
-                    # finding the x-coordinate (x2)
-                    # when y2 = frame_height * 0.5
-                    # half the height of the frame
-                    # tan(theta) = opp / hyp
-                    y2 = int(0.5 * frame_copy.shape[0])
-                    x2 = int(x1 - y2 / np.tan(
-                        median_2[0] * np.pi / 180))
-
-                    left_lane = (x1, frame_copy.shape[0], x2, y2, median_2[0])
-
+            # draw lanes (right)
             if right_lane is not None:
                 cv2.line(
                     frame_copy,
@@ -279,6 +296,7 @@ def main():
                     5,
                 )
 
+            # draw lanes (left)
             if left_lane is not None:
                 cv2.line(
                     frame_copy,
