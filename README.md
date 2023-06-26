@@ -6,7 +6,7 @@ A deep convolutional neural network (YOLOv7 - https://github.com/WongKinYiu/yolo
 
 For lane detection, traditional computer vision technique (OpenCV library) is used instead. A canny edge detector is first used to extract the edges. Secondly, define the Region of Interest (ROI) and apply Hough Line Transform (to get the lines) on the ROI. This is the basis for the lane detection.
 
-## Algorithm (Lane Detection)
+## Algorithm - Lane Detection
 
 ### Step 1: Canny Edge Detection
 
@@ -44,7 +44,7 @@ Using trigonometry, find the new origin point X where Y = frame_height.
 
 https://github.com/TQP1234/lane_detection/blob/4ea9e7d8858555a81c8526402c1e18fcf0a43cb7/main.py#L227-L233
 
-## Algorithm (Lane Segregation - checking which lane the vehicle is in)
+### Step 7: Check which lane the vehicle is in
 
 First, we will get the reference point of the vehicle (slightly below the center of the bounding box). Then, we will calculate both the lane point X where Y = the y-position of the vehicle. Lastly, we will compare the x-position of the vehicle against the x-postion of the left and right lane. And hence we shall get the lane position of the vehicle.
 
