@@ -142,12 +142,12 @@ def main():
             # save computational cost
             frame_copy = cv2.resize(frame.copy(), (640, 640))
 
+            # lane detection (using canny edge --> hough line transform)
+
             # canny edge parameters
             ratio = 3
             kernel_size = 3
             threshold = 50
-
-            # lane detection (using canny edge --> hough transform)
 
             # applying the canny edge filter
             # resize the frame to decrease resolution
