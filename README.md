@@ -72,9 +72,9 @@ Table of parameters:
 
 ## Sample Test Video
 
-<video controls="" width="800" height="500" muted="" loop="" autoplay="">
-<source src="https://github.com/TQP1234/lane_detection/assets/75831732/e444ae36-5995-44a7-8f17-5a7a07eecb48" type="video/mp4">
-</video>
+
+
+https://github.com/TQP1234/lane_detection/assets/75831732/340397c1-bfa4-4549-aba6-14f03c958e38
 
 
 
