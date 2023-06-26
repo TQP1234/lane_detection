@@ -70,6 +70,10 @@ Table of parameters:
 | :-- | :-: | :-: | :-: | :-: |
 | video_path | Path to the video | No | sample_video.mp4 | sample_video.mp4 |
 
+## Sample Test Video
+
+https://github.com/TQP1234/lane_detection/assets/75831732/e444ae36-5995-44a7-8f17-5a7a07eecb48
+
 ## Conclusion
 
 From the test video, it could be seen that the lane detection accuracy is not the best. There are certain frames that show the lines being off. And this approach only allows for line detection. And if we are on a curved road, it's probably not going to work. For increased accuracy, a more modern approach such as a deep neural network could be used for lane detection.
