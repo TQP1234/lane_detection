@@ -32,7 +32,7 @@ Usually, we will get multiple line detection results. But we only need one line.
 
 Using trigonometry, find the new origin point X where Y = frame_height.
 
-## Algorithm (Lane Segregation)
+## Algorithm (Lane Segregation - checking which lane the vehicle is in)
 
 First, we will get the reference point of the vehicle (slightly below the center of the bounding box). Then, we will calculate both the lane point X where Y = the y-position of the vehicle. Lastly, we will compare the x-position of the vehicle against the x-postion of the left and right lane. And hence we shall get the lane position of the vehicle.
 
