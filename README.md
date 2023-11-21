@@ -6,7 +6,7 @@ A deep convolutional neural network (YOLOv8n - https://github.com/ultralytics/ul
 
 For lane detection, traditional computer vision technique (OpenCV library) is used instead. A canny edge detector is first used to extract the edges. Secondly, define the Region of Interest (ROI) and apply Hough Line Transform (to get the lines) on the ROI. This is the basis for the lane detection.
 
-## Algorithm - Lane Detection
+## 1) Algorithm - Lane Detection
 
 ### Parameters
 
@@ -50,7 +50,7 @@ First, we will get the reference point of the vehicle (slightly below the center
 
 https://github.com/TQP1234/lane_detection/blob/ce49f8c62e9ade63a6e2cd10d516510ae63ed093/modules/vehicles_sort.py#L10-L131
 
-## Usage
+## 2) Usage
 
 Install the dependencies.
 
@@ -76,7 +76,7 @@ Please take note using this method will result in increased latency.
 streamlit run app.py
 ```
 
-## Sample Test Video
+## 3) Sample Test Video
 
 Video file is too large to upload in the README.md. Full video analysis can be found in the repository named as <b>lane_detection_analysis.mp4</b>.</br>
 
@@ -84,7 +84,7 @@ Snippet of the video analysis is shown below.
 
 <img width="476" alt="lane_detection_screenshot" src="https://github.com/TQP1234/lane_detection/assets/75831732/ccae7433-c140-4aa4-96f3-cae6feb65c68">
 
-## Conclusion
+## 4) Conclusion
 
 From the test video, it could be seen that the lane detection accuracy is not the best. There are certain frames that show the lines being off. And this approach only allows for straight line detection. And if we are on a curved road, it's probably not going to work. For increased accuracy, a more modern approach such as a deep neural network could be used for lane detection.
 
