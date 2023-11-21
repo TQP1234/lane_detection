@@ -70,7 +70,7 @@ python inference.py
 
 ### Method 2 - Running through web app
 
-Please take note using this method will result in increased latency.
+Please take note using this method may result in increased latency.
 
 ``` shell
 streamlit run app.py
