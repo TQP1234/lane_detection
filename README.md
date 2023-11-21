@@ -50,7 +50,7 @@ First, we will get the reference point of the vehicle (slightly below the center
 
 https://github.com/TQP1234/lane_detection/blob/ce49f8c62e9ade63a6e2cd10d516510ae63ed093/modules/vehicles_sort.py#L10-L131
 
-## 2) Usage
+## 2) Installation
 
 Install the dependencies.
 
@@ -58,7 +58,7 @@ Install the dependencies.
 pip install -r requirements.txt
 ```
 
-**There are 2 methods to run this.**
+## 3) Usage
 
 ### Method 1 - Executing the Python script directly
 
@@ -76,7 +76,7 @@ Please take note using this method may result in increased latency.
 streamlit run app.py
 ```
 
-## 3) Sample Test Video
+## 4) Sample Test Video
 
 Video file is too large to upload in the README.md. Full video analysis can be found in the repository named as <b>lane_detection_analysis.mp4</b>.</br>
 
@@ -84,7 +84,7 @@ Snippet of the video analysis is shown below.
 
 <img width="476" alt="lane_detection_screenshot" src="https://github.com/TQP1234/lane_detection/assets/75831732/ccae7433-c140-4aa4-96f3-cae6feb65c68">
 
-## 4) Conclusion
+## 5) Conclusion
 
 From the test video, it could be seen that the lane detection accuracy is not the best. There are certain frames that show the lines being off. And this approach only allows for straight line detection. And if we are on a curved road, it's probably not going to work. For increased accuracy, a more modern approach such as a deep neural network could be used for lane detection.
 
