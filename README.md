@@ -58,7 +58,7 @@ Install the dependencies.
 pip install -r requirements.txt
 ```
 
-<b>There are 2 methods to run this.</b>
+**There are 2 methods to run this.**
 
 ### Method 1 - Executing the Python script directly
 
