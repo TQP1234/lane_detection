@@ -82,8 +82,8 @@ streamlit run app.py
 
 ## 5) Conclusion
 
-From the test video, it could be seen that the lane detection accuracy is pretty decent. However, this approach only allows for straight line detection. And if we are on a curved road, it's probably not going to work. For increased accuracy, a more modern approach such as a deep neural network could be used for lane detection.
+From the test video, it could be seen that the lane detection accuracy is pretty decent. However, this approach only allows for straight line detection. And if we are on a curved road, it's probably not going to work. For increased accuracy and to allow for more scenarios, a more modern approach such as a deep neural network could be used for lane detection.
 
 Additionally, trucks are not being detected very accurately as well. To improve the model accuracy, we could finetune the model by adding more trucks to the training data.
 
-As for the traditional approach, it can still be used in certain cases such as in a fixed location where the environment is non-changing.
+While traditional approach is being phased out, there are still cases where it could be adopted. For example, it could be implemented in a fixed location where the environment is non-changing.
