@@ -12,41 +12,43 @@ For lane detection, traditional computer vision technique (OpenCV library) is us
 
 Parameters are stored in config.ini.
 
+https://github.com/TQP1234/lane_detection/blob/ce49f8c62e9ade63a6e2cd10d516510ae63ed093/config.ini#L1-L37
+
 ### Step 1: Canny Edge Detection
 
 First, we will perform canny edge detection to get the edges.
 
-https://github.com/TQP1234/lane_detection/blob/8607f089f622fe0c19af736ab2203fb76f4edf89/main.py#L42-L55
+https://github.com/TQP1234/lane_detection/blob/ce49f8c62e9ade63a6e2cd10d516510ae63ed093/modules/lane_detection.py#L21-L38
 
 ### Step 2: Grab the ROI
 
 Next, grab the ROI where we will perform Hough Line Transform with.
 
-https://github.com/TQP1234/lane_detection/blob/8607f089f622fe0c19af736ab2203fb76f4edf89/main.py#L20-L37
+https://github.com/TQP1234/lane_detection/blob/ce49f8c62e9ade63a6e2cd10d516510ae63ed093/modules/lane_detection.py#L40-L63
 
 ### Step 3: Hough Line Transform
 
 Use Hough Line Transform the get the lines.
 
-https://github.com/TQP1234/lane_detection/blob/8607f089f622fe0c19af736ab2203fb76f4edf89/main.py#L60-L69
+https://github.com/TQP1234/lane_detection/blob/ce49f8c62e9ade63a6e2cd10d516510ae63ed093/modules/lane_detection.py#L65-L86
 
 ### Step 4: Filter out redundant lines
 
 Using trigonometry formula, we will get the angle of the lines. And set a condition to only include lines that has an angle between 40-80 degrees.
 
-https://github.com/TQP1234/lane_detection/blob/8607f089f622fe0c19af736ab2203fb76f4edf89/main.py#L76-L108
+https://github.com/TQP1234/lane_detection/blob/ce49f8c62e9ade63a6e2cd10d516510ae63ed093/modules/lane_detection.py#L88-L115
 
 ### Step 5: Get the best line
 
 Usually, we will get multiple line detection results. But we only need one line. To choose the best line, I have decided to select the median results.
 
-https://github.com/TQP1234/lane_detection/blob/8607f089f622fe0c19af736ab2203fb76f4edf89/main.py#L123-L124
+https://github.com/TQP1234/lane_detection/blob/ce49f8c62e9ade63a6e2cd10d516510ae63ed093/modules/lane_detection.py#L133-L145
 
 ### Step 6: Check which lane the vehicle is in
 
 First, we will get the reference point of the vehicle (slightly below the center of the bounding box). Then, we will calculate both the lane point X where Y = the y-position of the vehicle. Lastly, we will compare the x-position of the vehicle against the x-postion of the left and right lane. And hence we shall get the lane position of the vehicle.
 
-https://github.com/TQP1234/lane_detection/blob/8607f089f622fe0c19af736ab2203fb76f4edf89/main.py#L175-L221
+https://github.com/TQP1234/lane_detection/blob/ce49f8c62e9ade63a6e2cd10d516510ae63ed093/modules/vehicles_sort.py#L10-L131
 
 ## Usage
 
