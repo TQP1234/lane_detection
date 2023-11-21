@@ -58,7 +58,7 @@ Install the dependencies.
 pip install -r requirements.txt
 ```
 
-There are 2 methods to run this.
+<b>There are 2 methods to run this.</b>
 
 ### Method 1 - Executing the Python script directly
 
@@ -86,7 +86,7 @@ Snippet of the video analysis is shown below.
 
 ## Conclusion
 
-From the test video, it could be seen that the lane detection accuracy is not the best. There are certain frames that show the lines being off. And this approach only allows for line detection. And if we are on a curved road, it's probably not going to work. For increased accuracy, a more modern approach such as a deep neural network could be used for lane detection.
+From the test video, it could be seen that the lane detection accuracy is not the best. There are certain frames that show the lines being off. And this approach only allows for straight line detection. And if we are on a curved road, it's probably not going to work. For increased accuracy, a more modern approach such as a deep neural network could be used for lane detection.
 
 Additionally, trucks are not being detected very accurately as well. To improve the model accuracy, we could finetune the model by adding more trucks to the dataset.
 
