@@ -25,7 +25,7 @@ def main():
     st.title('Lane Detection')
 
     if 'veh_det' not in st.session_state:
-        weights_path = './neural_networks/yolov8x.pt'
+        weights_path = './neural_networks/yolov8n.pt'
         label_path = './yolov8_classes.json'
         config_path = './config.ini'
 
