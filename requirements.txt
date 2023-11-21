@@ -1,14 +1,2 @@
-torch
-torchvision
-pandas
-requests
-tqdm
-pyyaml
-matplotlib
-seaborn
-scipy
-protobuf<4.21.3
-tensorboard>=2.4.1
-ipython
-psutil
-opencv-python
+ultralytics
+streamlit
