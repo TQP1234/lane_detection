@@ -68,7 +68,7 @@ Change the video path that you want to inference on through config.ini (line 2).
 python inference.py
 ```
 
-### Method 2 - Running through web app
+### Method 2 - Running through web app (Streamlit)
 
 Please take note using this method may result in increased latency.
 
