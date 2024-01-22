@@ -28,7 +28,7 @@ https://github.com/TQP1234/lane_detection/blob/ce49f8c62e9ade63a6e2cd10d516510ae
 
 ### Step 3: Hough Line Transform
 
-Use Hough Line Transform the get the lines.
+Use Hough Line Transform to get the lines.
 
 https://github.com/TQP1234/lane_detection/blob/ce49f8c62e9ade63a6e2cd10d516510ae63ed093/modules/lane_detection.py#L65-L86
 
